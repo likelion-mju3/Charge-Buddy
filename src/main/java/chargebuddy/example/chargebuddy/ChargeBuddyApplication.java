@@ -1,3 +1,4 @@
+
 package chargebuddy.example.chargebuddy;
 
 import org.springframework.boot.SpringApplication;
