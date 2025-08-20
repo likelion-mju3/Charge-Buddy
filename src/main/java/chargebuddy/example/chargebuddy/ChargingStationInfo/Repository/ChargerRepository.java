@@ -2,18 +2,18 @@ package chargebuddy.example.chargebuddy.ChargingStationInfo.Repository;
 
 import chargebuddy.example.chargebuddy.ChargingStationInfo.ChargerStateUpdateForm;
 import chargebuddy.example.chargebuddy.ChargingStationInfo.Domain.Charger;
+import chargebuddy.example.chargebuddy.ChargingStationInfo.Domain.ChargerId;
 import chargebuddy.example.chargebuddy.ChargingStationInfo.Domain.ChargingStation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ChargerRepository extends JpaRepository<Charger, String> {
+public interface ChargerRepository extends JpaRepository<Charger, ChargerId> {
     List<Charger> findByChargingStationStatId(String statId);
 
     Optional<Charger> findByChargingStationAndChgerId(ChargingStation chargingStation, String chgerId);

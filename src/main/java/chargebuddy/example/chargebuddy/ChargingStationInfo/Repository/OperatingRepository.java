@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface OperatingRepository extends JpaRepository<Operating, String> {
 
-    List<Operating> findByIsPrimary(String isPrimary);
+    //List<Operating> findByIsPrimary(String isPrimary);
 
     Optional<Operating> findByBnm(String bnm);
 }

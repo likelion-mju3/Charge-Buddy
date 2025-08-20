@@ -1,6 +1,5 @@
 package chargebuddy.example.chargebuddy.Controller;
 
-import chargebuddy.example.chargebuddy.ChargingStationInfo.Domain.ChargerType;
 import chargebuddy.example.chargebuddy.LocalStation.LocalStationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

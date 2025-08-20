@@ -1,6 +1,5 @@
 package chargebuddy.example.chargebuddy.ChargingStationInfo.Repository;
 
-import chargebuddy.example.chargebuddy.ChargingStationInfo.Domain.ChargerType;
 import chargebuddy.example.chargebuddy.ChargingStationInfo.Domain.ChargingStation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

@@ -15,10 +15,10 @@ import org.springframework.stereotype.Component;
 public class ChargerDataInitializer implements ApplicationRunner {
     private final ChargerBatchUpdateService chargerBatchUpdateService;
     private final ChargerService chargerService;
-    private ChargerBatchUpdateConfig chargerBatchUpdateConfig;
+    private final ChargerBatchUpdateConfig chargerBatchUpdateConfig;
 
     @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public void run(ApplicationArguments args) {
         log.info("[ApplicationRunner] : 서버 시작 후 초기 데이터 로드");
         chargerBatchUpdateConfig.setBatchUpdateRunning(true);
 

@@ -1,6 +1,5 @@
 package chargebuddy.example.chargebuddy.ChargingStationInfo.Service;
 
-import chargebuddy.example.chargebuddy.ChargingStationInfo.Domain.ChargerType;
 import chargebuddy.example.chargebuddy.ChargingStationInfo.Domain.ChargingStation;
 import chargebuddy.example.chargebuddy.ChargingStationInfo.Repository.ChargingStationRepository;
 import jakarta.persistence.EntityNotFoundException;

@@ -1,10 +1,8 @@
 package chargebuddy.example.chargebuddy.ChargingStationInfo.Service;
 
-import chargebuddy.example.chargebuddy.ChargingStationInfo.ChargerApiForm;
 import chargebuddy.example.chargebuddy.ChargingStationInfo.ChargerStateUpdateForm;
 import chargebuddy.example.chargebuddy.ChargingStationInfo.Repository.ChargerRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;

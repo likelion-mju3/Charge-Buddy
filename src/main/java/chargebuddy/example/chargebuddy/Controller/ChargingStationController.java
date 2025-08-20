@@ -1,13 +1,10 @@
 package chargebuddy.example.chargebuddy.Controller;
 
-import chargebuddy.example.chargebuddy.ChargingStationInfo.Domain.ChargerType;
 import chargebuddy.example.chargebuddy.ChargingStationInfo.Domain.ChargingStation;
-import chargebuddy.example.chargebuddy.ChargingStationInfo.Service.ChargerService;
 import chargebuddy.example.chargebuddy.ChargingStationInfo.Service.ChargingStationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import javax.naming.ldap.PagedResultsControl;
 import java.util.List;
 import java.util.Optional;
 

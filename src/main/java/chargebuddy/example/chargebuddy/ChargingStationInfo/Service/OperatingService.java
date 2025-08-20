@@ -20,13 +20,4 @@ public class OperatingService {
         return operatingRepository.findByBnm(bnm);
     }
 
-    public List<String> getPrimaryBusiIdList(){
-        List<Operating> primaryCompanies = operatingRepository.findByIsPrimary("Y");
-        return primaryCompanies.stream().map(Operating::getBusiId).toList();
-    }
-
-public List<String> getPrimaryBnmList(){
-        List<Operating> primaryCompanies = operatingRepository.findByIsPrimary("Y");
-        return primaryCompanies.stream().map(Operating::getBnm).toList();
-}
 }
