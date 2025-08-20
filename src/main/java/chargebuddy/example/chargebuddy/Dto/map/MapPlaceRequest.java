@@ -43,7 +43,6 @@ public class MapPlaceRequest {
     @Min(1) @Max(50)
     private Integer radiusKm = 5;
 
-    // ===== 필터(공공 API 원본 코드값 pass-through) =====
     @Schema(description = "충전기 타입(chgerType) 코드 배열",
             example = "[1,3,7]")
     private Set<Integer> chgerTypes;

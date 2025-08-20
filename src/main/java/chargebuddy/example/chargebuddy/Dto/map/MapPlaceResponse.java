@@ -20,7 +20,7 @@ public class MapPlaceResponse {
     @NotNull
     private List<StationMarker> stations;
 
-    @Schema(description = "상권 마커 목록 (탭 상태에 따라 프론트가 렌더 제어)")
+    @Schema(description = "상권 마z커목록")
     @NotNull
     private List<PlaceMarker> places;
 }

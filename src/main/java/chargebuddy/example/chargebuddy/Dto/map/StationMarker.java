@@ -1,5 +1,6 @@
 package chargebuddy.example.chargebuddy.Dto.map;
 
+import chargebuddy.example.chargebuddy.Dto.review.ReviewResponse;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -47,8 +48,8 @@ public class StationMarker {
     @Schema(description = "충전기 타입(chgerType) 코드 배열", example = "[1,3,7]")
     private Set<Integer> chgerTypes;
 
-    @Schema(description = "충전기 상태(stat) 코드 배열", example = "[2]")
-    private Set<Integer> statuses;
+    @Schema(description = "충전기 상태(stat) 코드 배열", example = "[2,3]")
+    private Set<Integer> statuses; // 집계해서 넣는다면 stat 코드 그대로
 
     @Schema(description = "충전 요금(가공 텍스트)", example = "300원/kWh ~")
     private String feeText;
@@ -60,5 +61,5 @@ public class StationMarker {
     private List<ChargerStatusDto> chargers;
 
     @Schema(description = "리뷰 목록")
-    private List<ReviewDto> reviews;
+    private List<ReviewResponse> reviews;
 }

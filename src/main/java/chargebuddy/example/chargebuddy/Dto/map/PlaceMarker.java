@@ -1,5 +1,6 @@
 package chargebuddy.example.chargebuddy.Dto.map;
 
+import chargebuddy.example.chargebuddy.Dto.review.ReviewResponse;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -36,6 +37,6 @@ public class PlaceMarker {
     @Schema(description = "영업시간", example = "08:00 ~ 22:00")
     private String openHours;
 
-    @Schema(description = "리뷰 목록")
-    private List<ReviewDto> reviews;
+//    @Schema(description = "리뷰 목록(응답 DTO)")
+//    private List<ReviewResponse> reviews;
 }
