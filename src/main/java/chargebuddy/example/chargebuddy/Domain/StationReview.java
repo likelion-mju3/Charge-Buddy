@@ -24,7 +24,8 @@ public class StationReview {
     private String userName;
     private String password;
 
-
+    @Builder.Default
+    @Column(nullable = false)
     private int likes = 0; // 추천수
 
 
