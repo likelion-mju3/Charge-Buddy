@@ -16,17 +16,5 @@ import java.util.List;
 public class RegionDetailService {
     private final RegionDetailRepository regionDetailRepository;
 
-    //
-    @PersistenceContext
-    private EntityManager entityManager;
 
-    public boolean isRegionDetailExist(String zscode){
-        RegionDetail regionDetail = entityManager.find(RegionDetail.class, zscode);
-        return regionDetail != null;
-    }
-
-    public List<String> getZscodeListByZcode(String zcode){
-        List<RegionDetail> regionDetails = regionDetailRepository.findByZcodeZcode(zcode);
-        return regionDetails.stream().map(RegionDetail::getRegionDetailName).toList();
-    }
 }

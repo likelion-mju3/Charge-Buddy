@@ -1,6 +1,7 @@
 package chargebuddy.example.chargebuddy.ChargingStationInfo.Domain;
 
 import chargebuddy.example.chargebuddy.ChargingStationInfo.ChargerApiForm;
+import chargebuddy.example.chargebuddy.jpa.BaseTime;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -9,22 +10,19 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@IdClass(ChargerId.class)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder(toBuilder = true)
-public class Charger {
+public class Charger extends BaseTime {
 
+    //충전기 id
+    private String chgerId;
 
     //충전기랑 조인
-    @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "stat_Id")
     private ChargingStation chargingStation;
 
-    //충전기 id
-    @Id
-    private String chgerId;
     //충전기 타입
     private String chgerType;
     //충전기 파워 타입

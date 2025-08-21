@@ -28,11 +28,11 @@ public class ChargerStateUpdateService {
 
     @Async
     @Transactional
-    public void updateChargerState(String baseUrl, String contentType, int numOfRows, int pageNo, int priod) {
+    public void updateChargerState(String baseUrl, String contentType, int numOfRows, int pageNo, int priod, String zcode) {
         log.info("[OpenAPI] : OpenAPI 데이터 불러오기 시작");
 
         HashMap apiDataMap = chargerService.webClientApiGetChargerStatus(
-                baseUrl, serviceKey, numOfRows, pageNo, contentType, priod);
+                baseUrl, serviceKey, numOfRows, pageNo, contentType, priod, zcode);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
 
         List<Map<String, Object>> items =

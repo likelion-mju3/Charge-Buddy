@@ -12,7 +12,7 @@ import static chargebuddy.example.chargebuddy.AppConfig.localKey;
 @Service
 @RequiredArgsConstructor
 public class LocalStationService {
-    public ResponseEntity<String> getSearch(List<String> category, double swLat, double neLat, double swLng, double neLng) {
+    public ResponseEntity<String> getSearch(String category, double swLat, double neLat, double swLng, double neLng) {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
         headers.setContentType(MediaType.APPLICATION_JSON);

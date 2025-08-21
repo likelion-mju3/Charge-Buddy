@@ -18,7 +18,7 @@ public class ChargerBatchUpdateScheduler {
     private final ChargerStateUpdateConfig chargerStateUpdateConfig;
     private final ChargerService chargerService;
 
-    @Scheduled(cron = "0 30 3 * * *")
+    @Scheduled(cron = "0 30 2 * * *")
     public void chargerBatchUpdateScheduled(){
         while (chargerStateUpdateConfig.isUpdateRunning()){
             try {

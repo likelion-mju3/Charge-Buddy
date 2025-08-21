@@ -15,11 +15,7 @@ public class RegionDetail {
     @Id
     private String zscode;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "zcode")
-    private Region zcode;
-
-    private String regionDetailName;
+    private String zcode;
 
     @OneToMany(mappedBy = "regionDetail")
     private List<ChargingStation> chargingStations = new ArrayList<>();

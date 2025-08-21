@@ -43,7 +43,7 @@ public class ChargerService {
 
     //충전기 상태 변경 조회
     public HashMap webClientApiGetChargerStatus(
-            String baseUrl, String serviceKey, int numOfRows, int pageNo, String type, int period
+            String baseUrl, String serviceKey, int numOfRows, int pageNo, String type, int period, String zcode
     ){
         URI uri = UriComponentsBuilder.fromUriString(baseUrl)
                 .queryParam("serviceKey", serviceKey)
@@ -51,6 +51,7 @@ public class ChargerService {
                 .queryParam("pageNo", pageNo)
                 .queryParam("dataType", type)
                 .queryParam("period", period)
+                .queryParam("zcode", zcode)
                 .build(true)
                 .toUri();
 
@@ -91,6 +92,7 @@ public class ChargerService {
                 .queryParam("serviceKey", serviceKey)
                 .queryParam("numOfRows", numOfRows)
                 .queryParam("pageNo", pageNo)
+                .queryParam("zcode", "11")
                 .queryParam("dataType", dataType)
                 .build(true)
                 .toUri();

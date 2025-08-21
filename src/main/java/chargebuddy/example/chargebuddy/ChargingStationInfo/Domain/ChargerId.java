@@ -1,13 +1,17 @@
 package chargebuddy.example.chargebuddy.ChargingStationInfo.Domain;
 
-import lombok.EqualsAndHashCode;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 public class ChargerId implements Serializable {
 
-    public String statId;
+    private String chgerId;
 
-    public String ChgerId;
+    private ChargingStation chargingStation;
 }

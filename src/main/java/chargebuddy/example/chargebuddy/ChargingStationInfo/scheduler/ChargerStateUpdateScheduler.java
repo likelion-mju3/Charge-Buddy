@@ -16,7 +16,7 @@ public class ChargerStateUpdateScheduler {
     private final ChargerStateUpdateConfig chargerStateUpdateConfig;
     private final ChargerBatchUpdateConfig chargerBatchUpdateConfig;
 
-    @Scheduled(fixedRate = 3 * 60 * 1000)
+    @Scheduled(fixedDelay = 5 * 60 * 1000)
     public void updateChargerStateScheduled(){
         if(chargerBatchUpdateConfig.isBatchUpdateRunning()) return;
 
@@ -28,7 +28,8 @@ public class ChargerStateUpdateScheduler {
                 chargerStateUpdateConfig.getContentType(),
                 chargerStateUpdateConfig.getNumOfRows(),
                 chargerStateUpdateConfig.getPageNo(),
-                chargerStateUpdateConfig.getPeriod());
+                chargerStateUpdateConfig.getPeriod(),
+                chargerStateUpdateConfig.getZcode());
 
         chargerStateUpdateConfig.setUpdateRunning(false);
         log.info("[Scheduler] : 충전기 상태 업데이트 종료");

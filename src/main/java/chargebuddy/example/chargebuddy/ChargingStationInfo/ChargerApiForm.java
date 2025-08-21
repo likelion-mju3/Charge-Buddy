@@ -80,8 +80,7 @@ public class ChargerApiForm {
         this.output = (String)item.get("output");
         this.method = (String)item.get("method");
         this.zcode = (String)item.get("zcode");
-        String Azscode = (String)item.get("zscode");
-        this.zscode = Azscode.length() == 5 ? Azscode.substring(0, 4)+"0" : Azscode;
+        this.zscode = (String)item.get("zscode");
         this.kind = (String)item.get("kind");
         this.kindDetail = (String)item.get("kindDetail");
         this.parkingFree = (String)item.get("parkingFree");

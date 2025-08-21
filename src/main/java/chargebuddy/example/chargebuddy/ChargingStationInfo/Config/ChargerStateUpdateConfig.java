@@ -22,4 +22,6 @@ public class ChargerStateUpdateConfig {
     private final int pageNo = 1;
 
     private final int period = 10;
+
+    private final String zcode = "11";
 }

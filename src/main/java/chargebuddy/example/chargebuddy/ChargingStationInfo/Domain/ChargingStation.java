@@ -51,8 +51,8 @@ public class ChargingStation {
     private int likes = 0;
 
     //리뷰
-    //@OneToMany(mappedBy = "chargingStation")
-    //private List<ChargingStationReview> reviews = new ArrayList<>();
+    @OneToMany(mappedBy = "chargingStation")
+    private List<Review> reviews = new ArrayList<>();
 
     //충전기
     @OneToMany(mappedBy = "chargingStation")
@@ -67,6 +67,20 @@ public class ChargingStation {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "busi_id")
     private Operating operating;
+
+    public List<Review> getReview() {
+        return reviews != null ? reviews : new ArrayList<>();
+    }
+
+    public List<Charger> getCharger() {
+        return charger != null ? charger : new ArrayList<>();
+    }
+
+    public long getAvailableChargerCount(){
+        return getCharger().stream()
+                .filter(charger -> charger.getStat().equals("2"))
+                .count();
+    }
 
     public ChargingStation(ChargerApiForm item, Operating company, RegionDetail region){
         this.statNm = item.getStatNm();
