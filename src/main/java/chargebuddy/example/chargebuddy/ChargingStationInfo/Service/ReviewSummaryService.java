@@ -1,5 +1,6 @@
 package chargebuddy.example.chargebuddy.ChargingStationInfo.Service;
 
+import chargebuddy.example.chargebuddy.ChargingStationInfo.DTO.SummaryResponse;
 import chargebuddy.example.chargebuddy.ChargingStationInfo.Domain.ChargingStation;
 import chargebuddy.example.chargebuddy.ChargingStationInfo.Domain.Review;
 import chargebuddy.example.chargebuddy.ChargingStationInfo.Repository.ChargingStationRepository;
@@ -49,11 +50,11 @@ public class ReviewSummaryService {
      * 2) 새 리뷰 생겼을 때만 클로바 재호출 (count/max(reviewTime) 기준)
      * 3) DB 저장 없음. 문자열 요약만 즉시 반환.
      */
-    public String summarizeNow(String statId) {
+    public SummaryResponse summarizeNow(String statId) {
         Optional<ChargingStation> chargingStation = chargingStationRepository.findById(statId);
         ChargingStation chargingStation1 = chargingStation.get();
         int count = chargingStation1.getReview().size();
-        if (count == 0) return ""; // 리뷰 없음
+        if (count == 0) return new SummaryResponse(statId," "); // 리뷰 없음
 
         //LocalDateTime lastTime = reviewRepository.findLastReviewTime(statId);
         //CacheEntry cached = cache.get(statId);
@@ -67,7 +68,7 @@ public class ReviewSummaryService {
         String summary = callClovaAndExtract(prompt);
 
         //cache.put(statId, new CacheEntry(lastTime, count, summary));
-        return summary;
+        return new SummaryResponse(statId,summary);
     }
 
     // ----- 프롬프트 구성 -----

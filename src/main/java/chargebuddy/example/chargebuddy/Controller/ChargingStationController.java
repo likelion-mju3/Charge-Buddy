@@ -1,5 +1,6 @@
 package chargebuddy.example.chargebuddy.Controller;
 
+import chargebuddy.example.chargebuddy.ChargingStationInfo.DTO.ChargerStationResponse;
 import chargebuddy.example.chargebuddy.ChargingStationInfo.Domain.ChargingStation;
 import chargebuddy.example.chargebuddy.ChargingStationInfo.Service.ChargingStationService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -32,7 +33,7 @@ public class ChargingStationController {
     //검색 조건
     @GetMapping("/map")
     @Operation(summary = "충전소 검색", description = "충전소 검색 충전기 타입(chgerType), 이용제한여부(limitYn), 충전중 제외(stat)의 조건을 충족하는 사각범위(넘서위도,북동위도,남서경도,북동경도)내 충전소를 검색합니다. 조건은 전부 필수 조건이 아님")
-    public List<ChargingStation> searchBaseStation(
+    public List<ChargerStationResponse> searchBaseStation(
             //충전 타입
             @RequestParam(value = "chgerType", required = false) List<String> chgerTypes,
             //이용제한 여유
@@ -49,10 +50,9 @@ public class ChargingStationController {
     //추천 수
     @PostMapping("/map/{statId}/like")
     @Operation(summary = "충전소 추천", description = "충전소를 추천합니다.")
-    public Optional<ChargingStation> likeStation(@Parameter(name = "statId", description = "충전소의 id", in = ParameterIn.PATH)
+    public ChargerStationResponse likeStation(@Parameter(name = "statId", description = "충전소의 id", in = ParameterIn.PATH)
                                                      @PathVariable String statId){
-        ChargingStation updated = chargingStationService.addLike(statId);
-        return Optional.ofNullable(updated);
+        return chargingStationService.addLike(statId);
     }
 
 }

@@ -1,11 +1,14 @@
 package chargebuddy.example.chargebuddy.ChargingStationInfo.Service;
 
+import chargebuddy.example.chargebuddy.ChargingStationInfo.DTO.ChargerStationResponse;
 import chargebuddy.example.chargebuddy.ChargingStationInfo.Domain.ChargingStation;
 import chargebuddy.example.chargebuddy.ChargingStationInfo.Repository.ChargingStationRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,16 +42,22 @@ public class ChargingStationService {
     }
 
     //커스텀 충전소 조회
-    public List<ChargingStation> searchBaseStation(List<String> chgerTypes, String limitYn, String stat, double swLat, double neLat, double swLng, double neLng){
+    public List<ChargerStationResponse> searchBaseStation(List<String> chgerTypes, String limitYn, String stat, double swLat, double neLat, double swLng, double neLng){
         List<ChargingStation> chargingStations = chargingStationRepository.findStationsByConditions(chgerTypes, limitYn, stat, swLat, neLat, swLng, neLng);
-        return chargingStations;
+        List<ChargerStationResponse> result = new ArrayList<>();
+        for (ChargingStation item : chargingStations){
+            ChargerStationResponse chargerStationResponse = new ChargerStationResponse(item);
+            result.add(chargerStationResponse);
+        }
+        return result;
     }
 
     //충전소 추천 수 반영
-    public ChargingStation addLike(String statId){
+    public ChargerStationResponse addLike(String statId){
         ChargingStation chargingStation = chargingStationRepository.findById(statId)
                 .orElseThrow(() -> new IllegalArgumentException("충전소를 찾을 수 없습니다."));
         chargingStation.setLikes(chargingStation.getLikes()+1);
-        return chargingStationRepository.save(chargingStation);
+        ChargerStationResponse chargerStationResponse = new ChargerStationResponse(chargingStationRepository.save(chargingStation));
+        return chargerStationResponse;
     }
 }
