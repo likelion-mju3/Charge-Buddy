@@ -21,7 +21,7 @@ public class ChargerApiBatchReader implements ItemReader<List<ChargerApiForm>> {
 
     private final ChargerService chargerService;
     private int currentPageNo = 1;
-    private final int numOfRows = 1000;
+    private final int numOfRows = 5000;
     private final String baseUrl = "https://apis.data.go.kr/B552584/EvCharger/getChargerInfo";
     private final String dataType = "JSON";
     @Override

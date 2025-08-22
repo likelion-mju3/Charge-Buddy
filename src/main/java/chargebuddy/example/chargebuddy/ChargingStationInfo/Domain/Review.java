@@ -1,10 +1,8 @@
 package chargebuddy.example.chargebuddy.ChargingStationInfo.Domain;
 
+import chargebuddy.example.chargebuddy.jpa.BaseTime;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -13,11 +11,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Review {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class Review extends BaseTime {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "stat_id")
     private ChargingStation chargingStation;
@@ -26,8 +20,10 @@ public class Review {
 
     private String password;
 
+    @Setter
     private int likes = 0;
 
+    @Setter
     @Column(columnDefinition = "TEXT")
     private String reviewText;
 

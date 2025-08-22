@@ -13,7 +13,7 @@ public class SwaggerConfig {
         Info info = new Info()
                 .title("ChargeBuddy API")
                 .version("1.0.0")
-                .description("<h3>Contact Service Swagger</h3>");
+                .description("<h3>ChargeBuddy API 문서</h3>");
 
         return new OpenAPI().info(info);
     }
