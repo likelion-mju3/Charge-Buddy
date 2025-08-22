@@ -59,7 +59,7 @@ public class ChargerService {
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 10000);
 
         WebClient webClient = WebClient.builder()
-                .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(5 * 1024 * 1024))  //5MB
+                .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(16 * 1024 * 1024))  //5MB
                 .baseUrl(uri.toString())
                 .clientConnector(new ReactorClientHttpConnector(httpClient))
                 .build();
@@ -101,7 +101,7 @@ public class ChargerService {
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 10000);
 
         WebClient webClient = WebClient.builder()
-                .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(5 * 1024 * 1024))  //5MB
+                .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(16 * 1024 * 1024))  //5MB
                 .baseUrl(uri.toString())
                 .clientConnector(new ReactorClientHttpConnector(httpClient))
                 .build();

@@ -22,8 +22,8 @@ public class ChargerDataInitializer implements ApplicationRunner {
         log.info("[ApplicationRunner] : 서버 시작 후 초기 데이터 로드");
         chargerBatchUpdateConfig.setBatchUpdateRunning(true);
 
-        chargerBatchUpdateService.runChargerBatchUpdateJob();
-        chargerService.deleteAllDeletedChargers();
+//        chargerBatchUpdateService.runChargerBatchUpdateJob();
+//        chargerService.deleteAllDeletedChargers();
 
         log.info("[ApplicationRunner] : 초기 데이터 로드 완료");
         chargerBatchUpdateConfig.setBatchUpdateRunning(false);
