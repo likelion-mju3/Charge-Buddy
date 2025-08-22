@@ -1,5 +1,6 @@
 package chargebuddy.example.chargebuddy.ChargingStationInfo.Service;
 
+import chargebuddy.example.chargebuddy.ChargingStationInfo.DTO.ReviewResponse;
 import chargebuddy.example.chargebuddy.ChargingStationInfo.Domain.ChargingStation;
 import chargebuddy.example.chargebuddy.ChargingStationInfo.Domain.Review;
 import chargebuddy.example.chargebuddy.ChargingStationInfo.Repository.StationReviewRepository;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,7 +19,7 @@ public class StationReviewService {
     private final StationReviewRepository stationReviewRepository;
     private final ChargingStationService chargingStationService;
 
-    public void create(String statId, String userName, String password, String reviewText, LocalDateTime reviewTime) {
+    public ReviewResponse create(String statId, String userName, String password, String reviewText, LocalDateTime reviewTime) {
         Review review = Review.builder()
                 .chargingStation(chargingStationService.findById(statId))
                 .userName(userName)
@@ -27,14 +29,20 @@ public class StationReviewService {
                 .build();
 
         stationReviewRepository.saveAndFlush(review);
+        return new ReviewResponse(review);
     }
 
     @Transactional
-    public List<Review> getByStatId(String statId){
-        return stationReviewRepository.findByChargingStationStatId(statId);
+    public List<ReviewResponse> getByStatId(String statId){
+        List<ReviewResponse> result = new ArrayList<>();
+        for(Review item : stationReviewRepository.findByChargingStationStatId(statId)){
+            ReviewResponse response = new ReviewResponse(item);
+            result.add(response);
+        }
+        return result;
     }
 
-    public Review update(Long id, String password, String reviewText) {
+    public ReviewResponse update(Long id, String password, String reviewText) {
         Review r = stationReviewRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("리뷰를 찾을수 없습니다."));
 
@@ -44,7 +52,9 @@ public class StationReviewService {
 
         if(reviewText != null) r.setReviewText(reviewText);
 
-        return stationReviewRepository.saveAndFlush(r);
+        ReviewResponse response = new ReviewResponse(stationReviewRepository.saveAndFlush(r));
+
+        return response;
     }
 
     public void delete(Long id, String password) {
@@ -57,10 +67,10 @@ public class StationReviewService {
     }
 
     @Transactional
-    public Review addLike(Long id){
+    public ReviewResponse addLike(Long id){
         Review r = stationReviewRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("리뷰를 찾을 수 없습니다."));
         r.setLikes(r.getLikes()+1);
-        return stationReviewRepository.saveAndFlush(r);
+        return new ReviewResponse(stationReviewRepository.saveAndFlush(r));
     }
 }

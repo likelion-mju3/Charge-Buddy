@@ -1,5 +1,7 @@
 package chargebuddy.example.chargebuddy.Controller;
 
+import chargebuddy.example.chargebuddy.ChargingStationInfo.DTO.ReviewResponse;
+import chargebuddy.example.chargebuddy.ChargingStationInfo.DTO.SummaryResponse;
 import chargebuddy.example.chargebuddy.ChargingStationInfo.Domain.Review;
 import chargebuddy.example.chargebuddy.ChargingStationInfo.Service.ReviewSummaryService;
 import chargebuddy.example.chargebuddy.ChargingStationInfo.Service.StationReviewService;
@@ -23,12 +25,11 @@ public class StationReviewController {
     //CREATE
     @Operation(summary = "리뷰등록", description = "특정 충전소(statId)에 대해 사용자 리뷰를 등록합니다. 닉네임, 비밀번호, 리뷰가 필요합니다.")
     @PostMapping("/{statId}")
-    public String createReview(@PathVariable String statId, @RequestBody Map<String, Object> request){
+    public ReviewResponse createReview(@PathVariable String statId, @RequestBody Map<String, Object> request){
         String userName = request.get("사용자명").toString();
         String password = request.get("비밀번호").toString();
         String reviewText = request.get("리뷰").toString();
-        stationReviewService.create(statId, userName, password, reviewText, null);
-        return "리뷰 작성이 완료되었습니다.";
+        return stationReviewService.create(statId, userName, password, reviewText, null);
     }
 
 
@@ -38,17 +39,14 @@ public class StationReviewController {
     )
     // READ
     @GetMapping("/{statId}")
-    public List<Review> getReviewsByStation(@PathVariable String statId) {
+    public List<ReviewResponse> getReviewsByStation(@PathVariable String statId) {
         return stationReviewService.getByStatId(statId);
     }
 
     @Operation(summary = "충전소 리뷰 요약", description = "충전소(statId)별로 등록된 최신 리뷰 5개를 요약합니다.")
     @GetMapping("/{statId}/summary")
-    public ResponseEntity<String> summarize(@PathVariable String statId){
-        String result = reviewSummaryService.summarizeNow(statId);
-        return (result == null || result.isBlank())
-                ? ResponseEntity.noContent().build()
-                : ResponseEntity.ok(result);
+    public SummaryResponse summarize(@PathVariable String statId){
+        return reviewSummaryService.summarizeNow(statId);
     }
 
     // UPDATE
@@ -57,13 +55,12 @@ public class StationReviewController {
             description = "리뷰 본문을 수정합니다. 비밀번호가 일치해야 수정됩니다."
     )
     @PatchMapping("/{statId}/{reviewId}")
-    public String updateReview(@PathVariable Long reviewId,
+    public ReviewResponse updateReview(@PathVariable Long reviewId,
                                @RequestBody Map<String, Object> request) {
         String password = request.get("비밀번호").toString();
         String reviewText = request.get("리뷰").toString();
 
-        stationReviewService.update(reviewId, password, reviewText);
-        return "리뷰 수정이 완료되었습니다";
+        return stationReviewService.update(reviewId, password, reviewText);
     }
 
 
@@ -86,9 +83,8 @@ public class StationReviewController {
             description = "리뷰의 추천 수를 1 증가시킵니다."
     )
     @PostMapping("/{statId}/{reviewId}/like")
-    public String likeReview(@PathVariable Long reviewId) {
-        Review updated = stationReviewService.addLike(reviewId);
-        return "추천 완료! 현재 추천 수: " + updated.getLikes();
+    public ReviewResponse likeReview(@PathVariable Long reviewId) {
+        return stationReviewService.addLike(reviewId);
     }
 
 }
