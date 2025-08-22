@@ -7,20 +7,15 @@ import lombok.*;
 
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
-@Schema(description = "리뷰 작성 요청 바디")
-public class ReviewRequest {
-
-    @Schema(description = "작성자명", example = "홍길동")
-    @NotBlank
-    @JsonProperty("사용자명")
-    private String userName;
+@Schema(description = "리뷰 수정 요청 바디")
+public class ReviewUpdateRequest {
 
     @Schema(description = "비밀번호(본인확인용)", example = "1234")
     @NotBlank
     @JsonProperty("비밀번호")
     private String password;
 
-    @Schema(description = "리뷰 본문", example = "충전 속도 빠르고 주차 편해요")
+    @Schema(description = "수정할 리뷰 본문", example = "대기시간이 조금 줄었어요")
     @NotBlank
     @Size(max = 1000)
     @JsonProperty("리뷰")

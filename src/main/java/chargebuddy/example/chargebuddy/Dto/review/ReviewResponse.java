@@ -1,34 +1,33 @@
 package chargebuddy.example.chargebuddy.Dto.review;
 
-
 import io.swagger.v3.oas.annotations.media.Schema;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import java.time.LocalDateTime;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Getter @Setter
-@Schema(description = "리뷰 응답 DTO")
+@NoArgsConstructor @AllArgsConstructor
+@Schema(description = "리뷰 응답")
 public class ReviewResponse {
 
-    @Schema(description = "리뷰 ID", example = "demo")
-    private String reviewId;
+    @Schema(description = "리뷰 ID", example = "1001")
+    private Long id;
 
-    @Schema(description = "대상 타입(STATION/PLACE)", example = "STATION")
-    private String targetType;
-    @Schema(description = "대상 ID", example = "ST123456")
-    private String targetId;
+    @Schema(description = "충전소 placeId/외부ID", example = "KAKAO_xxx 또는 공공 statId")
+    private String placeId;
 
-    @Schema(description = "작성자 ID", example = "USER-1001")
-    private String userId;
+    @Schema(description = "충전소명(옵션)", example = "서울시청 주차장")
+    private String stationName;
 
-    @Schema(description = "리뷰 본문", example = "주차가 편하고 충전이 빨라서 자주 사용해요.")
-    private String content;
+    @Schema(description = "작성자명", example = "홍길동")
+    private String userName;
 
-    @Schema(description = "좋아요 수", example = "15")
-    private Integer likes;
+    @Schema(description = "추천수", example = "12")
+    private int likes;
 
-    @Schema(description = "작성 일시",
-            example = "2025-08-20T12:34:56")
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    private LocalDateTime createdAt;
+    @Schema(description = "리뷰 본문", example = "충전 속도 빠르고 주차 편해요")
+    private String reviewText;
+
+    @Schema(description = "작성일시", example = "2025-01-14T09:30:00")
+    private LocalDateTime reviewTime;
 }
