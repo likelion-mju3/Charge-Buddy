@@ -55,7 +55,8 @@ public class StationReviewController {
             description = "리뷰 본문을 수정합니다. 비밀번호가 일치해야 수정됩니다."
     )
     @PatchMapping("/{statId}/{reviewId}")
-    public ReviewResponse updateReview(@PathVariable Long reviewId,
+    public ReviewResponse updateReview(@PathVariable Long statId,
+                                       @PathVariable Long reviewId,
                                @RequestBody Map<String, Object> request) {
         String password = request.get("비밀번호").toString();
         String reviewText = request.get("리뷰").toString();
@@ -70,7 +71,8 @@ public class StationReviewController {
             description = "리뷰를 삭제합니다. 비밀번호가 일치해야 삭제됩니다."
     )
     @DeleteMapping("/{statId}/{reviewId}")
-    public String deleteReview(@PathVariable Long reviewId,
+    public String deleteReview(@PathVariable Long statId,
+                               @PathVariable Long reviewId,
                                @RequestParam String password) {
         stationReviewService.delete(reviewId, password);
         return "리뷰가 삭제되었습니다.";
@@ -83,7 +85,8 @@ public class StationReviewController {
             description = "리뷰의 추천 수를 1 증가시킵니다."
     )
     @PostMapping("/{statId}/{reviewId}/like")
-    public ReviewResponse likeReview(@PathVariable Long reviewId) {
+    public ReviewResponse likeReview(@PathVariable Long statId,
+                                     @PathVariable Long reviewId) {
         return stationReviewService.addLike(reviewId);
     }
 
