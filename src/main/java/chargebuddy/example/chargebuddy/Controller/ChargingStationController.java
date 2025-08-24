@@ -16,6 +16,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
+@CrossOrigin(origins = {"https://chargebuddy.digital", "http://localhost:8080"})
 @Tag(name = "ChargeStationInfoAPI", description = "충전소 정보 API")
 public class ChargingStationController {
     private final ChargingStationService chargingStationService;
