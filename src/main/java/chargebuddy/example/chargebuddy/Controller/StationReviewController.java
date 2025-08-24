@@ -17,7 +17,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/map")
 @RequiredArgsConstructor
-@CrossOrigin(origins = {"https://chargebuddy.digital", "http://localhost:8080"})
+@CrossOrigin(origins = {"https://chargebuddy.digital", "http://localhost:8080", "http://localhost:5173"})
 @Tag(name = "리뷰 CRUD API", description = "충전소 리뷰/등록/조회/삭제 및 추천")
 public class StationReviewController {
     private final StationReviewService stationReviewService;
