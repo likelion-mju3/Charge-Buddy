@@ -79,6 +79,17 @@ public class StationReviewController {
         return "리뷰가 삭제되었습니다.";
     }
 
+//    @Operation(
+//            summary = "리뷰 삭제(관리자용)",
+//            description = "리뷰를 삭제합니다. 관리자용으로 임의삭제시 사용"
+//    )
+//    @DeleteMapping("/{statId}/{reviewId}")
+//    public String delete(@PathVariable String statId,
+//                         @PathVariable Long reviewId){
+//        stationReviewService.delete(reviewId);
+//        return "리뷰가 삭제되었습니다.";
+//    }
+
 
     // 추천 수 반영
     @Operation(
