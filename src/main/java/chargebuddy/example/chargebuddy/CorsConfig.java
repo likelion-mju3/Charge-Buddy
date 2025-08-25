@@ -13,6 +13,7 @@ public class CorsConfig implements WebMvcConfigurer {
                 .allowedOrigins("http://localhost:8080",
                         "http://54.180.240.188:8080",
                         "http://localhost:5173",
+                        "https://www.chargebuddy.digital",
                         "http://chargebuddy.digital",
                         "https://chargebuddy.digital")
                 .allowedMethods("*")

@@ -17,7 +17,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/map")
 @RequiredArgsConstructor
-@CrossOrigin(origins = {"https://chargebuddy.digital", "http://localhost:8080", "http://localhost:5173"})
+@CrossOrigin(origins = {"https://www.chargebuddy.digital", "https://chargebuddy.digital", "http://localhost:8080", "http://localhost:5173"})
 @Tag(name = "리뷰 CRUD API", description = "충전소 리뷰/등록/조회/삭제 및 추천")
 public class StationReviewController {
     private final StationReviewService stationReviewService;
@@ -78,6 +78,17 @@ public class StationReviewController {
         stationReviewService.delete(reviewId, password);
         return "리뷰가 삭제되었습니다.";
     }
+
+//    @Operation(
+//            summary = "리뷰 삭제(관리자용)",
+//            description = "리뷰를 삭제합니다. 관리자용으로 임의삭제시 사용"
+//    )
+//    @DeleteMapping("/{statId}/{reviewId}")
+//    public String delete(@PathVariable String statId,
+//                         @PathVariable Long reviewId){
+//        stationReviewService.delete(reviewId);
+//        return "리뷰가 삭제되었습니다.";
+//    }
 
 
     // 추천 수 반영

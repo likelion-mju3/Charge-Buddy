@@ -66,6 +66,13 @@ public class StationReviewService {
         stationReviewRepository.delete(r);
     }
 
+    //관리자용 리뷰 삭제
+    public void delete(Long id){
+        Review r = stationReviewRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("리뷰를 찾을수 없습니다."));
+        stationReviewRepository.delete(r);
+    }
+
     @Transactional
     public ReviewResponse addLike(Long id){
         Review r = stationReviewRepository.findById(id)
